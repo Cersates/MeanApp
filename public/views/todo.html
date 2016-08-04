@@ -1,0 +1,29 @@
+<!--<link rel="stylesheet" href="css/style.css">-->
+<!--<link rel="stylesheet" href="css/styleTodo.css"> &lt;!&ndash; custom styles &ndash;&gt;-->
+<link rel="stylesheet" href="css/styleTodo.css"> <!-- custom styles -->
+
+<div class="jumbotron text-center">
+    <section id="todoapp" ng-controller="TodoController">
+        <header id="header">
+            <form id="todo-form" ng-submit="addTodo()">
+                <input id="new-todo" placeholder="Что еще нужно сделать?" ng-model="newTodo" autofocus>
+            </form>
+        </header>
+        <section id="main" ng-show="todos.length" ng-cloak>
+            <ul id="todo-list">
+                <li ng-repeat="todo in todos | filter:statusFilter"
+                    ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+                    <div class="view">
+                        <label ng-dblclick="editTodo(todo)">{{todo.title}}</label>
+                        <button class="destroy" ng-click="removeTodo(todo)"></button>
+                    </div>
+                    <form ng-submit="doneEditing(todo)">
+                        <input class="edit" ng-model="todo.title" todo-blur="doneEditing(todo)"
+                               todo-focus="todo == editedTodo">
+                    </form>
+                </li>
+            </ul>
+        </section>
+
+    </section>
+</div>

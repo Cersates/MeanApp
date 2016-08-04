@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="css/style.css"> <!-- custom styles -->
+
+<div class="jumbotron text-center">
+
+    <section id="productapp" ng-controller="ProductController">
+        <header id="header">
+            <form id="product-form" ng-submit="addProduct()">
+                <input id="new-product" placeholder="Input new product" ng-model="newProduct" autofocus>
+                <br/>Welcome to AngularJS {{newProduct}}
+            </form>
+        </header>
+        <section id="main" ng-show="products.length" ng-cloak>
+            <ul id="product-list">
+                <li ng-repeat="product in products" ng-class="{editing: product == editedProduct}">
+                    <div class="view">
+                        <label ng-dblclick="editProduct(product)">{{product.title}}</label>
+                        <!--<button class="destroy" ng-click="removeProduct(product)"></button>-->
+                    </div>
+                    <form ng-submit="doneEditing(product)">
+                        <input class="edit" ng-model="product.title" product-blur="doneEditing(product)"
+                               product-focus="product == editedProduct">
+                    </form>
+                </li>
+            </ul>
+        </section>
+
+    </section>
+
+</div>
